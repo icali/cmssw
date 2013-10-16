@@ -145,15 +145,133 @@ void L1GlobalCaloTrigger::process() {
     for (int i=0; i<m_numOfBx; i++) {
       // Perform partial reset (reset processing logic but preserve pipeline contents)
       bxReset(bx);
+        
+     // here I could put Pu subtraction
+      this->ApplyPUSubtraction(bx);
+  
       // Fill input data into processors for this bunch crossing
       fillEmCands(emc, bx);
       fillRegions(rgn, bx);
+        
+        
+        
+        
       // Process this bunch crossing
       bxProcess(bx);
       bx++;
     }
   }
 }
+
+/*
+void L1GlobalCaloTrigger::fillRegions(const vector<L1CaloRegion>& rgn)
+{
+    // To enable multiple bunch crossing operation, we copy the input regions into a vector,
+    // from which they will be extracted one bunch crossing at a time and sent to the processors
+    vector<L1CaloRegion>::iterator itr=m_allInputRegions.end();
+    m_allInputRegions.insert(itr, rgn.begin(), rgn.end());
+}
+
+/// set electrons from the RCT at the input to be processed
+void L1GlobalCaloTrigger::fillEmCands(const vector<L1CaloEmCand>& em)
+
+/// Private method to send one bunch crossing's worth of regions to the processors
+void L1GlobalCaloTrigger::fillRegions(vector<L1CaloRegion>::iterator& rgn, const int bx) {
+    while (rgn != m_allInputRegions.end() && rgn->bx() == bx) {
+        setRegion(*rgn++);
+    }
+}
+
+/// Private method to send one bunch crossing's worth of electrons to the processors
+void L1GlobalCaloTrigger::fillEmCands(vector<L1CaloEmCand>::iterator& emc, const int bx){
+    while (emc != m_allInputEmCands.end() && emc->bx() == bx) {
+        if (emc->isolated()) {
+            setIsoEm(*emc);
+        } else {
+            setNonIsoEm(*emc);
+        } 
+        emc++;
+    }
+}
+*/
+
+void L1GlobalCaloTrigger::ApplyPUSubtraction(int bx ){
+    vector<L1CaloRegion>::iterator rgn=m_allInputRegions.begin();
+    std::vector<L1CaloRegion> BxInputRegions;
+    BxInputRegions.clear();
+    while (rgn != m_allInputRegions.end() && rgn->bx() == bx) {
+        BxInputRegions.push_back(*rgn++);
+    }
+    
+
+    unsigned int puLevel = 0;
+    unsigned int puLevelUIC = 0;
+    double r_puLevelUIC=0.0;
+    int puCount = 0;
+    double Rarea=0.0;
+    
+    //to be added as parameters
+    double regionLSB = 5.0;
+    unsigned int puETMax = 7;
+    
+    std::vector<double> r_puLevelHI;
+    r_puLevelHI.clear();
+    r_puLevelHI.insert(r_puLevelHI.begin(), L1CaloRegionDetId::N_ETA, 0.0);
+   
+    std::vector<int> etaCount;
+    etaCount.clear();
+    etaCount.insert(etaCount.begin(), L1CaloRegionDetId::N_ETA, 0);
+    
+    std::vector<int> puLevelHI;
+    puLevelHI.clear();
+    puLevelHI.insert(puLevelHI.begin(), L1CaloRegionDetId::N_ETA, 0);
+
+    
+    
+    for(std::vector<L1CaloRegion>::iterator newRegion =
+        BxInputRegions.begin();
+        newRegion != BxInputRegions.end(); newRegion++){
+        if(regionLSB * newRegion->et() <= puETMax) {
+            puLevel += newRegion->et(); puCount++;
+            r_puLevelUIC += newRegion->et();
+            //Rarea += getRegionArea(newRegion->gctEta());
+        }
+        r_puLevelHI[newRegion->gctEta()] += newRegion->et();
+        etaCount[newRegion->gctEta()]++;
+    }
+    // Add a factor of 9, so it corresponds to a jet.  Reduces roundoff error.
+    puLevel *= 9;
+    if(puCount != 0) puLevel = puLevel / puCount;
+    r_puLevelUIC = r_puLevelUIC / Rarea;
+    puLevelUIC=0;
+    if (r_puLevelUIC > 0.) puLevelUIC = floor (r_puLevelUIC + 0.5);
+    
+    for(unsigned eta = 0; eta < L1CaloRegionDetId::N_ETA; ++eta)
+    {
+        puLevelHI[eta] = floor(r_puLevelHI[eta]/etaCount[eta] + 0.5);
+    }
+    
+    rgn=m_allInputRegions.begin();
+    while (rgn != m_allInputRegions.end() && rgn->bx() == bx) {
+        
+        unsigned et= std::max(0.,rgn->et() -
+                              (puLevelHI[rgn->gctEta()]*regionLSB));
+        bool overFlow = rgn->overFlow();
+        bool fineGrain = rgn->fineGrain();
+        bool mip = rgn->mip();
+        bool quiet = rgn->quiet();
+        unsigned ieta= rgn->gctEta();
+        unsigned iphi= rgn->gctPhi();
+        L1CaloRegion tmpReg(et,overFlow,fineGrain,mip, quiet,ieta,iphi);
+
+        *rgn = tmpReg;
+        
+    }
+
+   
+}
+
+
 
 /// Sort the input data by bunch crossing number
 void L1GlobalCaloTrigger::sortInputData() {

@@ -12,6 +12,7 @@
 #include "L1Trigger/GlobalCaloTrigger/interface/L1GctJetLeafCard.h"
 
 #include <vector>
+#include <stdint.h>
 
 /*!
  * \author Jim Brooke
@@ -221,6 +222,9 @@ public:
 
  private:
   
+  //function used to apply bck or PU subtraction
+  void ApplyPUSubtraction(int bx);
+    
   /// Steps in the processing treating input arriving over several bunch crossings
   /// Sort the input data by bunch crossing number
   void sortInputData();
@@ -307,6 +311,7 @@ public:
   /// then sent to the processors one bunch crossing at a time
   std::vector<L1CaloEmCand> m_allInputEmCands;
   std::vector<L1CaloRegion> m_allInputRegions;
+  
 };
 
 #endif /*L1GLOBALCALOTRIGGER_H_*/

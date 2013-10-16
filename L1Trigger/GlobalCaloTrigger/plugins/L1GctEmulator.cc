@@ -197,7 +197,9 @@ void L1GctEmulator::produce(edm::Event& e, const edm::EventSetup& c) {
 
   // The emulator will always produce output collections, which get filled as long as
   // the setup and input data are present. Start by making empty output collections.
-
+	
+	std::cout<< " I'm running the emulator" << std::endl;	
+	
   // create the em and jet collections
   std::auto_ptr<L1GctEmCandCollection> isoEmResult   (new L1GctEmCandCollection( ) );
   std::auto_ptr<L1GctEmCandCollection> nonIsoEmResult(new L1GctEmCandCollection( ) );
@@ -257,6 +259,14 @@ void L1GctEmulator::produce(edm::Event& e, const edm::EventSetup& c) {
       }
     }
 
+    // Check we have some input data to process (data size is non-zero)
+    gotEm  &= (em  -> size() > 0);
+    gotRgn &= (rgn -> size() > 0);
+    
+	  std::cout << " Em size: " <<em->size() << std::endl;
+	  std::cout<< " rgn size: " <<rgn->size() << std::endl;
+	  
+	  
     // if all is ok, proceed with GCT processing
     if (gotEm && gotRgn) {
       // reset the GCT internal buffers
