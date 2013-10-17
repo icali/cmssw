@@ -1,0 +1,86 @@
+
+# DO NOT DELETE
+
+./TriggerPrimitivesTree_trackcurve_C.so: TriggerPrimitivesTree_trackcurve.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TROOT.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TDirectory.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TNamed.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TObject.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/Rtypes.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/RConfig.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/RVersion.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/DllImport.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/Rtypeinfo.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/snprintf.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/strlcpy.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TGenericClassInfo.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TSchemaHelper.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TStorage.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TVersionCheck.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/Riosfwd.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TBuffer.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TString.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TRefCnt.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TMathBase.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TList.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TSeqCollection.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TCollection.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TIterator.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TDatime.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TUUID.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TChain.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TTree.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TBranch.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TObjArray.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TAttFill.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TAttLine.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TAttMarker.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TArrayD.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TArray.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TArrayI.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TDataType.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TDictionary.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/Property.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TClass.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TObjString.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TVirtualTreePlayer.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TFile.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TDirectoryFile.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TUrl.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TMap.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/THashTable.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TH1.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TAxis.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TAttAxis.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TArrayC.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TArrayS.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TArrayF.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/Foption.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TVectorFfwd.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TVectorDfwd.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TFitResultPtr.h
+./TriggerPrimitivesTree_trackcurve_C.so: HLTMuTree.C HLTMuTree.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TH2.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TMatrixFBasefwd.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TMatrixDBasefwd.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TStyle.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TAttText.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TCanvas.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TPad.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TVirtualPad.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TAttPad.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TVirtualX.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/GuiTypes.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/Buttons.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TQObject.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TAttCanvas.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TCanvasImp.h
+./TriggerPrimitivesTree_trackcurve_C.so: HiTree.C HiTree.h HltTree.C
+./TriggerPrimitivesTree_trackcurve_C.so: HltTree.h JetTree.C JetTree.h
+./TriggerPrimitivesTree_trackcurve_C.so: SetupTrackTree.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TProfile.h
+./TriggerPrimitivesTree_trackcurve_C.so: FindRegionJet.C
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TMath.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TError.h
+./TriggerPrimitivesTree_trackcurve_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/cintdictversion.h /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/RVersion.h
+TriggerPrimitivesTree_trackcurve_C__ROOTBUILDVERSION= 5.27/06b

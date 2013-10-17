@@ -1,0 +1,86 @@
+
+# DO NOT DELETE
+
+./run_tracktriggerMEN_C.so: TriggerPrimitivesTree_trackcurve.C
+./run_tracktriggerMEN_C.so: TriggerPrimitivesTree_trackcurve.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TROOT.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TDirectory.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TNamed.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TObject.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/Rtypes.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/RConfig.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/RVersion.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/DllImport.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/Rtypeinfo.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/snprintf.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/strlcpy.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TGenericClassInfo.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TSchemaHelper.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TStorage.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TVersionCheck.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/Riosfwd.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TBuffer.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TString.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TRefCnt.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TMathBase.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TList.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TSeqCollection.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TCollection.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TIterator.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TDatime.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TUUID.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TChain.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TTree.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TBranch.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TObjArray.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TAttFill.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TAttLine.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TAttMarker.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TArrayD.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TArray.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TArrayI.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TDataType.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TDictionary.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/Property.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TClass.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TObjString.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TVirtualTreePlayer.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TFile.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TDirectoryFile.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TUrl.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TMap.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/THashTable.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TH1.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TAxis.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TAttAxis.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TArrayC.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TArrayS.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TArrayF.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/Foption.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TVectorFfwd.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TVectorDfwd.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TFitResultPtr.h
+./run_tracktriggerMEN_C.so: HLTMuTree.C HLTMuTree.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TH2.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TMatrixFBasefwd.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TMatrixDBasefwd.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TStyle.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TAttText.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TCanvas.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TPad.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TVirtualPad.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TAttPad.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TVirtualX.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/GuiTypes.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/Buttons.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TQObject.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TAttCanvas.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TCanvasImp.h
+./run_tracktriggerMEN_C.so: HiTree.C HiTree.h HltTree.C HltTree.h JetTree.C
+./run_tracktriggerMEN_C.so: JetTree.h SetupTrackTree.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TProfile.h
+./run_tracktriggerMEN_C.so: FindRegionJet.C
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TMath.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/TError.h
+./run_tracktriggerMEN_C.so: /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/cintdictversion.h /afs/cern.ch/cms/slc5_amd64_gcc434/lcg/root/5.27.06b-cms31/include/RVersion.h
+run_tracktriggerMEN_C__ROOTBUILDVERSION= 5.27/06b
