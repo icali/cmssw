@@ -199,6 +199,7 @@ void L1GlobalCaloTrigger::ApplyPUSubtraction(int bx ){
     vector<L1CaloRegion>::iterator rgn=m_allInputRegions.begin();
     std::vector<L1CaloRegion> BxInputRegions;
     BxInputRegions.clear();
+	
     while (rgn != m_allInputRegions.end() && rgn->bx() == bx) {
         BxInputRegions.push_back(*rgn++);
     }
@@ -250,6 +251,7 @@ void L1GlobalCaloTrigger::ApplyPUSubtraction(int bx ){
     {
         puLevelHI[eta] = floor(r_puLevelHI[eta]/etaCount[eta] + 0.5);
     }
+	
     
     rgn=m_allInputRegions.begin();
     while (rgn != m_allInputRegions.end() && rgn->bx() == bx) {
@@ -263,8 +265,11 @@ void L1GlobalCaloTrigger::ApplyPUSubtraction(int bx ){
         unsigned ieta= rgn->gctEta();
         unsigned iphi= rgn->gctPhi();
         L1CaloRegion tmpReg(et,overFlow,fineGrain,mip, quiet,ieta,iphi);
-
+		tmpReg.setBx(bx);
         *rgn = tmpReg;
+        rgn++;
+        
+        
         
     }
 
