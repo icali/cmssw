@@ -26,7 +26,9 @@ process.maxEvents = cms.untracked.PSet(
 # Input source
 process.source = cms.Source("PoolSource",
     secondaryFileNames = cms.untracked.vstring(),
-    fileNames = cms.untracked.vstring('/store/group/phys_heavyions/icali/PAPhysics/pAPilotRun_Run202792GoodLumis_PAZeroBiasPixel_SingleTrack_CMSSW528_RAW/5f752ae4ea383967d47381bbbc967a29/SD_PAZeroBiasPixel_SingleTrack_9_1_1oM.root')
+                            #fileNames = cms.untracked.vstring('/store/group/phys_heavyions/icali/HIHighPt/RAW/181530/A8D6061E-030D-E111-A482-BCAEC532971A.root') #PbPb
+                            fileNames = cms.untracked.vstring('/store/group/phys_heavyions/icali/PAPhysics/pAPilotRun_Run202792GoodLumis_PAZeroBiasPixel_SingleTrack_CMSSW528_RAW/5f752ae4ea383967d47381bbbc967a29/SD_PAZeroBiasPixel_SingleTrack_9_1_1oM.root') #pA
+                            #fileNames = cms.untracked.vstring('/store/group/phys_heavyions/icali/PAPhysics/pAPilotRun_Run202792GoodLumis_PAZeroBiasPixel_SingleTrack_CMSSW528_RAW/5f752ae4ea383967d47381bbbc967a29/SD_PAZeroBiasPixel_SingleTrack_9_1_1oM.root')
 )
 
 process.options = cms.untracked.PSet(
@@ -60,8 +62,8 @@ process.RAWoutput = cms.OutputModule("PoolOutputModule",
 
 
 # customize the L1 emulator to run customiseL1EmulatorFromRaw with HLT to switchToSimGmtGctGtDigis
-#import L1Trigger.Configuration.L1Trigger_custom
-#process = L1Trigger.Configuration.L1Trigger_custom.customiseL1GtEmulatorFromRaw( process )
+import L1Trigger.Configuration.L1Trigger_custom
+process = L1Trigger.Configuration.L1Trigger_custom.customiseL1GtEmulatorFromRaw( process )
 #process = L1Trigger.Configuration.L1Trigger_custom.customiseResetPrescalesAndMasks( process )
 
 # customize the HLT to use the emulated results
@@ -93,10 +95,10 @@ process.L1em_step = cms.Path(process.L1Emulator)
 #process.L1simulation_step = cms.Path(process.SimL1Emulator)
 #process.digi_step = cms.Path(process.RawToDigi)
 #process.endjob_step = cms.EndPath(process.endOfProcess)
-#process.RAWoutput_step = cms.EndPath(process.RAWoutput)
+process.RAWoutput_step = cms.EndPath(process.RAWoutput)
 
 # Schedule definition
 #process.schedule = cms.Schedule(process.L1simulation_step,process.digi_step, process.filterActiveBitsNoZB_step,process.endjob_step,process.RAWoutput_step)
 #process.schedule = cms.Schedule(process.digi_step,process.endjob_step,process.RAWoutput_step)
 
-process.schedule = cms.Schedule(process.L1em_step)
+process.schedule = cms.Schedule(process.L1em_step, process.RAWoutput_step)
