@@ -61,6 +61,8 @@ class L1GctEmulator : public edm::EDProducer {
 
   // untracked parameters
   bool m_verbose;
+    
+  bool ApplyPUSubtraction;
 
   // tracked parameters
 

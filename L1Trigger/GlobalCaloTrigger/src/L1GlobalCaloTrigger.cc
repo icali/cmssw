@@ -40,6 +40,7 @@ L1GlobalCaloTrigger::L1GlobalCaloTrigger(const L1GctJetLeafCard::jetFinderType j
 
   // construct hardware
   build(jfType, jetLeafMask);
+  ApplySubtraction = false;
 }
 
 /// GCT Destructor
@@ -123,10 +124,16 @@ void L1GlobalCaloTrigger::reset() {
   // Energy Final Stage
   theEnergyFinalStage->reset();
 
+  
 }
 
+void L1GlobalCaloTrigger::process_wPUSub(){
+    ApplySubtraction = true;
+    this->process();
+    ApplySubtraction = false;
+}
 void L1GlobalCaloTrigger::process() {
-
+  
   // Shouldn't get here unless the setup has been completed
   if (setupOk()) {
 
@@ -147,19 +154,17 @@ void L1GlobalCaloTrigger::process() {
       bxReset(bx);
         
      // here I could put Pu subtraction
-      this->ApplyPUSubtraction(bx);
+      if(ApplySubtraction) this->ApplyPUSubtraction(bx);
   
       // Fill input data into processors for this bunch crossing
       fillEmCands(emc, bx);
-      fillRegions(rgn, bx);
-        
-        
-        
+      fillRegions(rgn, bx);        
         
       // Process this bunch crossing
       bxProcess(bx);
       bx++;
     }
+      ApplySubtraction = false;
   }
 }
 
@@ -195,6 +200,8 @@ void L1GlobalCaloTrigger::fillEmCands(vector<L1CaloEmCand>::iterator& emc, const
 }
 */
 
+
+// HI specific functions
 void L1GlobalCaloTrigger::ApplyPUSubtraction(int bx ){
     vector<L1CaloRegion>::iterator rgn=m_allInputRegions.begin();
     std::vector<L1CaloRegion> BxInputRegions;
@@ -276,7 +283,10 @@ void L1GlobalCaloTrigger::ApplyPUSubtraction(int bx ){
    
 }
 
+//L1GctJetCandCollection SingleTrackTrigger(int bx){
 
+//}
+//End HI specific HI functions
 
 /// Sort the input data by bunch crossing number
 void L1GlobalCaloTrigger::sortInputData() {
@@ -726,7 +736,15 @@ L1GctJetCandCollection L1GlobalCaloTrigger::getForwardJets() const {
 
 // tau jet outputs to GT
 L1GctJetCandCollection L1GlobalCaloTrigger::getTauJets() const { 
-  return theJetFinalStage->getTauJets(); 
+   std::vector<L1GctJetCand> tempVect = theJetFinalStage->getTauJets();   // to be removed
+    std::cout << "size tau" << tempVect.size() << std::endl;
+    for(unsigned int i=0; i < tempVect.size(); ++i){
+        std::cout << tempVect[i] << std::endl;
+        
+    }
+    
+   
+   return theJetFinalStage->getTauJets();
 }
 
 /// all jets from jetfinders in raw format

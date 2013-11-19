@@ -102,6 +102,7 @@ L1GctEmulator::L1GctEmulator(const edm::ParameterSet& ps) :
   // set verbosity (not implemented yet!)
   //  m_gct->setVerbose(m_verbose);
 
+  ApplyPUSubtraction = ps.getParameter<bool>("ApplyPUSubtraction");
   // print debug info?
   if (m_verbose) {
     m_gct->print();
@@ -277,7 +278,8 @@ void L1GctEmulator::produce(edm::Event& e, const edm::EventSetup& c) {
       m_gct->fillRegions(*rgn);
   
       // process the event
-      m_gct->process();
+      if(ApplyPUSubtraction) m_gct->process_wPUSub();
+      else m_gct->process();
 
       // fill the em and jet collections
       *isoEmResult    = m_gct->getIsoElectrons();
@@ -286,6 +288,7 @@ void L1GctEmulator::produce(edm::Event& e, const edm::EventSetup& c) {
       *forJetResult   = m_gct->getForwardJets();
       *tauJetResult   = m_gct->getTauJets();
 
+      
       // fill the energy sum digis
       *etTotResult  = m_gct->getEtSumCollection();
       *etHadResult  = m_gct->getEtHadCollection();

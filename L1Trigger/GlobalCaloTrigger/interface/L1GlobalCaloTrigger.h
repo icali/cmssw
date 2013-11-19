@@ -73,6 +73,7 @@ public:
   
   /// process an event
   void process();
+  void process_wPUSub();
 
   ///=================================================================================================
   /// Configuration options for the GCT
@@ -222,8 +223,9 @@ public:
 
  private:
   
-  //function used to apply bck or PU subtraction
+  //function used to apply bck or PU subtraction HI specific
   void ApplyPUSubtraction(int bx);
+  L1GctJetCandCollection SingleTrackTrigger(int bx);
     
   /// Steps in the processing treating input arriving over several bunch crossings
   /// Sort the input data by bunch crossing number
@@ -306,6 +308,7 @@ public:
   bool m_bxRangeAuto;
   int m_bxStart;
   int m_numOfBx;
+  bool ApplySubtraction;
 
   /// Local copies of input data, sorted by bunch crossing
   /// then sent to the processors one bunch crossing at a time
