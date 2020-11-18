@@ -26,7 +26,7 @@ process.TFileService = cms.Service("TFileService",
     fileName = cms.string("StripsRAW_v2.root"))
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(1000)
+    input = cms.untracked.int32(10)
 )
 
 # Input source
@@ -77,7 +77,8 @@ process.AODoutput = cms.OutputModule("PoolOutputModule",
 
 # Other statements
 from Configuration.AlCa.GlobalTag import GlobalTag
-process.GlobalTag = GlobalTag(process.GlobalTag, '103X_dataRun2_Prompt_v2', '')
+#process.GlobalTag = GlobalTag(process.GlobalTag, '103X_dataRun2_Prompt_v2', '')
+process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:run2_data', '')
 
 # Path and EndPath definitions
 process.raw2digi_step = cms.Path(process.RawToDigi)
@@ -87,16 +88,8 @@ process.endjob_step = cms.EndPath(process.endOfProcess)
 process.AODoutput_step = cms.EndPath(process.AODoutput)
 
 
-process.load('RecoLocalTracker.SiStripClusterizer.SiStripClusters2ApproxClusters_cfi')
-process.approxClusters = cms.Path(process.SiStripClusters2ApproxClusters)
 process.load('RecoLocalTracker.SiStripClusterizer.SiStripClusters2ApproxClustersv2_cfi')
 process.approxClustersv2 = cms.Path(process.SiStripClusters2ApproxClustersv2)
-process.load('RecoLocalTracker.SiStripClusterizer.SiStripApproxClusters2Clusters_cfi')
-process.load('RecoLocalTracker.SiStripRecHitConverter.SiStripRecHitConverter_cfi')
-process.newSiStripMatchedRecHits = process.siStripMatchedRecHits.clone(
-  ClusterProducer=cms.InputTag("SiStripApproxClusters2Clusters")
-)
-process.newClusters = cms.Path(process.SiStripApproxClusters2Clusters*process.newSiStripMatchedRecHits)
 
 process.load('EventFilter.SiStripRawToDigi.SiStripDigiToRaw_cfi')
 process.rawStep = process.SiStripDigiToRaw.clone(
@@ -132,15 +125,16 @@ process.ESRawDataCollector = process.rawDataCollector.clone(RawCollectionList = 
 process.rawPath = cms.Path(process.rawStep*process.rawStepPix*process.rawStepHCAL*process.rawStepES*process.StripRawDataCollector*process.PixelRawDataCollector*process.HCALRawDataCollector*process.ESRawDataCollector)
 
 #rechit converter
-process.load('RecoLocalTracker.SiStripRecHitConverter.SiStripRecHitConverter_cfi')
-process.ApproximateRecHits = process.approxSiStripMatchedRecHits.clone(
-     ClusterProducer = 'SiStripClusters2ApproxClustersv2' 
-)
-process.ApproximateRecHitsPath = cms.Path(process.ApproximateRecHits)
+#process.load('RecoLocalTracker.SiStripRecHitConverter.SiStripRecHitConverter_cfi')
+#process.ApproximateRecHits = process.approxSiStripMatchedRecHits.clone(
+#     ClusterProducer = 'SiStripClusters2ApproxClustersv2' 
+#)
+#process.ApproximateRecHitsPath = cms.Path(process.ApproximateRecHits)
 
 
 # Schedule definition
-process.schedule = cms.Schedule(process.raw2digi_step,process.L1Reco_step,process.reconstruction_step,process.approxClusters,process.approxClustersv2,process.ApproximateRecHitsPath,process.newClusters,process.rawPath, process.endjob_step,process.AODoutput_step)
+#process.schedule = cms.Schedule(process.raw2digi_step,process.L1Reco_step,process.reconstruction_step,process.approxClustersv2,process.ApproximateRecHitsPath,process.rawPath, process.endjob_step,process.AODoutput_step)
+process.schedule = cms.Schedule(process.raw2digi_step,process.L1Reco_step,process.reconstruction_step,process.approxClustersv2,process.rawPath, process.endjob_step,process.AODoutput_step)
 from PhysicsTools.PatAlgos.tools.helpers import associatePatAlgosToolsTask
 associatePatAlgosToolsTask(process)
 

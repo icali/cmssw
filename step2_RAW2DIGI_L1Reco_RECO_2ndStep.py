@@ -7,7 +7,7 @@ import FWCore.ParameterSet.Config as cms
 
 from Configuration.StandardSequences.Eras import eras
 
-process = cms.Process('reRECO2',eras.Run2_2018_pp_on_AA)
+process = cms.Process('APPROXIMATED',eras.Run2_2018_pp_on_AA)
 
 # import of standard configurations
 process.load('Configuration.StandardSequences.Services_cff')
@@ -23,12 +23,12 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(1000)
+    input = cms.untracked.int32(-1)
 )
 
 # Input source
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('file:/eos/cms/store/group/phys_heavyions/abaty/RAWREADOUT/step2_WithRecHits.root'),
+    fileNames = cms.untracked.vstring('file:step2.root'),
     secondaryFileNames = cms.untracked.vstring()
 )
 
@@ -71,7 +71,8 @@ process.AODoutput = cms.OutputModule("PoolOutputModule",
 
 # Other statements
 from Configuration.AlCa.GlobalTag import GlobalTag
-process.GlobalTag = GlobalTag(process.GlobalTag, '103X_dataRun2_Prompt_v2', '')
+#process.GlobalTag = GlobalTag(process.GlobalTag, '103X_dataRun2_Prompt_v2', '')
+process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:run2_data', '')
 
 # Path and EndPath definitions
 process.raw2digi_step = cms.Path(process.RawToDigi)
@@ -80,8 +81,8 @@ process.reconstruction_step = cms.Path(process.reconstruction)
 process.endjob_step = cms.EndPath(process.endOfProcess)
 process.AODoutput_step = cms.EndPath(process.AODoutput)
 
-process.load('RecoTracker.IterativeTracking.iterativeTkConfig')
-process.lowPtQuadStepClusters.stripClusters = "SiStripApproxClusters2Clusters"
+#process.load('RecoTracker.IterativeTracking.iterativeTkConfig')
+#process.lowPtQuadStepClusters.stripClusters = "SiStripApproxClusters2Clusters"
 
 
 #process.load('RecoLocalTracker.SiStripClusterizer.SiStripClusters2ApproxClusters_cfi')
@@ -93,9 +94,16 @@ process.lowPtQuadStepClusters.stripClusters = "SiStripApproxClusters2Clusters"
 #)
 #process.newClusters = cms.Path(process.SiStripApproxClusters2Clusters*process.newSiStripMatchedRecHits)
 
+
+process.load('RecoLocalTracker.SiStripRecHitConverter.SiStripRecHitConverter_cfi')
+process.ApproximateRecHits = process.approxSiStripMatchedRecHits.clone(
+     ClusterProducer = 'SiStripClusters2ApproxClustersv2' 
+)
+process.ApproximateRecHitsPath = cms.Path(process.ApproximateRecHits)
+
 # Schedule definition
 #process.schedule = cms.Schedule(process.raw2digi_step,process.L1Reco_step,process.reconstruction_step,process.approxClusters,process.newClusters,process.endjob_step,process.AODoutput_step)
-process.schedule = cms.Schedule(process.raw2digi_step,process.L1Reco_step,process.reconstruction_step,process.endjob_step,process.AODoutput_step)
+process.schedule = cms.Schedule(process.raw2digi_step,process.L1Reco_step,process.ApproximateRecHitsPath,process.reconstruction_step,process.endjob_step,process.AODoutput_step)
 from PhysicsTools.PatAlgos.tools.helpers import associatePatAlgosToolsTask
 associatePatAlgosToolsTask(process)
 
@@ -120,4 +128,4 @@ process = customiseEarlyDelete(process)
 
 from HLTrigger.Configuration.CustomConfigs import MassReplaceInputTag
 #process = MassReplaceInputTag(process,"siStripClusters","SiStripApproxClusters2Clusters")
-process = MassReplaceInputTag(process,"siStripMatchedRecHits","newSiStripMatchedRecHits")
+process = MassReplaceInputTag(process,"siStripMatchedRecHits","ApproximateRecHits")
