@@ -2,10 +2,12 @@
 #define RecoLocalTracker_SiStripRecHitConverter_StripCPEfromTrackAngle_H
 
 #include "RecoLocalTracker/SiStripRecHitConverter/interface/StripCPE.h"
+#include "DataFormats/SiStripApproximateClusterv2/interface/SiStripApproximateClusterv2.h"
 
 class StripCPEfromTrackAngle : public StripCPE {
 private:
   using StripCPE::localParameters;
+  using StripCPE::approxlocalParameters;
 
   //Error parameterization, low cluster width function
   float mLC_P[3];
@@ -42,6 +44,12 @@ public:
   StripClusterParameterEstimator::LocalValues localParameters(const SiStripCluster&,
                                                               const GeomDetUnit&,
                                                               const LocalTrajectoryParameters&) const override;
+
+  StripClusterParameterEstimator::LocalValues
+  approxlocalParameters( const SiStripApproximateClusterv2& cl, AlgoParam const & ap) const override;
+
+  StripClusterParameterEstimator::LocalValues
+  approxlocalParameters( const SiStripApproximateClusterv2&, const GeomDetUnit&, const LocalTrajectoryParameters&) const override;
 
   float stripErrorSquared(const unsigned N, const float uProj, const SiStripDetId::SubDetector loc) const;
   float legacyStripErrorSquared(const unsigned N, const float uProj) const;
