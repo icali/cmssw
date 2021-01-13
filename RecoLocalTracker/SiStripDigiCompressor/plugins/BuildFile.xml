@@ -1,4 +1,3 @@
 <library name="RecoLocalTrackerSiStripDigiCompressorPlugins" file="*.cc">
-  <use name="RecoLocalTracker/SiStripDigiCompressor"/>
   <flags EDM_PLUGIN="1"/>
 </library>
