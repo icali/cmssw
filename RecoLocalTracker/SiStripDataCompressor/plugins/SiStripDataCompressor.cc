@@ -18,7 +18,7 @@ void SiStripDataCompressor::produce(edm::Event& event, const edm::EventSetup& es
 
   for (auto const& token : inputTokens) {
     if (findInput(token, inClusters, event)){
-      //algorithm->compress(*inClusters, *outClusters);
+      algorithm->compress(*inClusters, *outClusters);
     }else
       edm::LogError("Input Not Found") << "[SiStripDataCompressor::produce] ";  // << tag;
   }
