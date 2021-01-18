@@ -8,6 +8,7 @@
 <use name="CalibFormats/SiStripObjects"/>
 <use name="CalibTracker/Records"/>
 <use name="EventFilter/SiStripRawToDigi"/>
+<use name="anlz4cmssw"/>
 <export>
   <lib name="1"/>
 </export>

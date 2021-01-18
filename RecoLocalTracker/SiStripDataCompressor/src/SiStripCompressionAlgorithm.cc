@@ -1,60 +1,53 @@
 #include "RecoLocalTracker/SiStripDataCompressor/interface/SiStripCompressionAlgorithm.h"
-//#include "RecoLocalTracker/SiStripDataCompressor/interface/analz4cmssw.h"
+#include "RecoLocalTracker/SiStripDataCompressor/include/anlz4cmssw.h"
+#include <iostream>
 
-//SiStripCompressionAlgorithm::SiStripCompressionAlgorithm(){
-   // this->LoadRealModelDataFromFile();
-//}
+SiStripCompressionAlgorithm::SiStripCompressionAlgorithm(){
+    this->LoadRealModelDataFromFile();
+}
 
-void SiStripCompressionAlgorithm::compress(const vdigi_t& ncDigi, vdigi_t& compDigis){
-    for (const auto& inDigis : ncDigi) {
-        edm::DetSet<SiStripDigi> compressedDigis(inDigis.id);
-        
-        //this->commpressDetModule(inDigis, compressedDigis);
-
-        //if (!compressedDigis.empty()) 
-        //compDigis.push_back(std::move(compressedDigis));
-        //compDigis::TSFastFiller()
-        //output_t::TSFastFiller ff(output, it->detId());
-
+void SiStripCompressionAlgorithm::compress(const vclusters_t& ncColl, v_comp_clusters_t& compColl){
+    
+    for (vclusters_t::const_iterator itInColl = ncColl.begin(); itInColl!= ncColl.end(); itInColl++) {
+      vclusters_t::TSFastFiller ff(compColl, itInColl->detId());
+      commpressDetModule(*itInColl, ff);
+      if (ff.empty())
+        ff.abort(); 
     }
     
 }
-/*
-inline void SiStripZeroSuppression::processHybrid(const edm::DetSetVector<SiStripDigi>& input) {
-  for (const auto& inDigis : input) {
-    edm::DetSet<SiStripDigi> suppressedDigis(inDigis.id);
 
-    uint16_t nAPVflagged = 0;
-    nAPVflagged = algorithms->suppressHybridData(inDigis, suppressedDigis);
+void SiStripCompressionAlgorithm::commpressDetModule(const clusters_t& ncClusters, v_comp_clusters_t::TSFastFiller& compressedClusters) {
 
-    storeExtraOutput(inDigis.id, nAPVflagged);
-    if (!suppressedDigis.empty())
-      output_base.push_back(std::move(suppressedDigis));
+  std::vector<const std::vector<uint8_t>> toBeCompressed;
+  std::vector<std::uint8_t> compAmplitudes;
+  SiStripDetSetCompressedCluster compCluster;
+
+  for (clusters_t::const_iterator itNcClusters = ncClusters.begin(); itNcClusters!= ncClusters.end(); itNcClusters++){
+
+
+    const std::vector<uint8_t>& amplitudes = itNcClusters->amplitudes();
+    toBeCompressed.push_back(amplitudes);
+    
+        
+
+       
+
+    std::cout << "Amplitude zise: " << amplitudes.size() << " Compressed Amplitude Size: " << compAmplitudes.size() << " Lib size: " << evtSz << std::endl;
+    
   }
+  
+  std::size_t evtSz = anlz4cmssw_compress(toBeCompressed, compAmplitudes);  
+  compCluster.loadCompressedAmplitudes(compAmplitudes);
+  compressedClusters.push_back(compCluster);
+
+   
+    
 }
+     
 
-void clusterize_(const T& input, output_t& output) const {
-    for (typename T::const_iterator it = input.begin(); it != input.end(); it++) {
-      output_t::TSFastFiller ff(output, it->detId());
-      clusterizeDetUnit(*it, ff);
-      if (ff.empty())
-        ff.abort();
-    }
-
-template <class T>
-inline void ThreeThresholdAlgorithm::endCandidate(State& state, T& out) const {
-  if (candidateAccepted(state)) {
-    applyGains(state);
-    appendBadNeighbors(state);
-    if (siStripClusterTools::chargePerCM(state.det().detId, state.ADCs.begin(), state.ADCs.end()) > minGoodCharge)
-      out.push_back(SiStripCluster(firstStrip(state), state.ADCs.begin(), state.ADCs.end()));
-  }
-  clearCandidate(state);
-}
-*/
-
-void SiStripCompressionAlgorithm::commpressDetModule(const digi_t& ncDigi, digi_t& compressedDigis) {
 /*
+
   uint16_t nAPVFlagged = 0;
   auto beginAPV = ncDigi.begin();
   const auto indigis_end = ncDigi.end();
@@ -77,14 +70,12 @@ void SiStripCompressionAlgorithm::commpressDetModule(const digi_t& ncDigi, digi_
 
    
 */  
-}
-
 
 void SiStripCompressionAlgorithm::LoadRealModelDataFromFile(){
-    /*
+    
     std::uint8_t modelBuf[65536];
     std::vector<std::uint8_t> model;
-    FILE *fTrained = std::fopen("model.dat", "rb");
+    FILE *fTrained = std::fopen("/afs/cern.ch/user/i/icali/waCompStudies_11_1_6/RecoLocalTracker/SiStripDataCompressor/data/model.dat", "rb");
         while (true) {
             std::size_t rdSz = std::fread(modelBuf, 1, sizeof modelBuf, fTrained);
             if (rdSz <= 0)
@@ -94,41 +85,42 @@ void SiStripCompressionAlgorithm::LoadRealModelDataFromFile(){
         std::fclose(fTrained);
 
         anlz4cmssw_load_trained_model(model);
-    */
+    
 }
 
-void SiStripCompressionAlgorithm::compressDataContent() {
-    /*
-    FILE *fCompressed = std::fopen("compressed.dat", "wb");
+//void SiStripCompressionAlgorithm::compressDataContent() {
+//}
 
-    for (Long64_t entryInChain = 0; entryInChain < nEntries; ++entryInChain) {
-        Long64_t entryInTree = LoadTree(entryInChain);
-        if (entryInTree < 0)
-            break;
+/*
+inline void SiStripZeroSuppression::processHybrid(const edm::DetSetVector<SiStripDigi>& input) {
+  for (const auto& inDigis : input) {
+    edm::DetSet<SiStripDigi> suppressedDigis(inDigis.id);
 
-        Long64_t nb = mChain->GetEntry(entryInChain);
-        nBytesRead += nb;
-        //std::cout << entryInChain << ", " << mAmplitudes->size() << std::endl;
+    uint16_t nAPVflagged = 0;
+    nAPVflagged = algorithms->suppressHybridData(inDigis, suppressedDigis);
 
-        std::vector<std::uint8_t> pkt;
-        std::size_t evtSz = anlz4cmssw_compress(*mAmplitudes, pkt);
-        totalUncompressed += evtSz;
-        totalCompressed += pkt.size();
-
-        std::cout << entryInChain << ": " << mAmplitudes->size() << ", " << evtSz << ", " << pkt.size() << std::endl;
-
-        // Write compressed packet to file
-        std::uint32_t pktLen = pkt.size();
-        std::fwrite(&pktLen, sizeof pktLen, 1, fCompressed);    // write packet length as 4-byte integer
-        std::fwrite(&pkt[0], 1, pktLen, fCompressed);           // write packet payload
-        // Or you can put the compressed packet to a transformed root file
-    }
-
-    std::fclose(fCompressed);
-
-    std::cout << "COMPRESS COUNT = " << totalUncompressed << " -- " << totalCompressed << std::endl;
-
-    std::cout << "**time elapsed in ms: " << timeSinceEpochMillisec() - start << std::endl;
-    */
+    storeExtraOutput(inDigis.id, nAPVflagged);
+    if (!suppressedDigis.empty())
+      output_base.push_back(std::move(suppressedDigis));
+  }
 }
+
+
+
+template <class T>
+inline void ThreeThresholdAlgorithm::endCandidate(State& state, T& out) const {
+  if (candidateAccepted(state)) {
+    applyGains(state);
+    appendBadNeighbors(state);
+    if (siStripClusterTools::chargePerCM(state.det().detId, state.ADCs.begin(), state.ADCs.end()) > minGoodCharge)
+      out.push_back(SiStripCluster(firstStrip(state), state.ADCs.begin(), state.ADCs.end()));
+  }
+  clearCandidate(state);
+}
+*/
+
+
+
+
+
 
