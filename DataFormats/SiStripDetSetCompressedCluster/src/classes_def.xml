@@ -1,7 +1,6 @@
 <lcgdict>
 
- <class name="SiStripDetSetCompressedCluster" ClassVersion="0">
- </class>
+ <class name="SiStripDetSetCompressedCluster"/>
  <class name="std::vector<SiStripDetSetCompressedCluster>"/>
 
  <class name="edmNew::DetSetVector<SiStripDetSetCompressedCluster>"/>

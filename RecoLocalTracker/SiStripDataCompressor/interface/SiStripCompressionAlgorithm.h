@@ -1,9 +1,6 @@
 #ifndef RecoLocalTracker_SiStripCompressionAlgorithm_h
 #define RecoLocalTracker_SiStripCompressionAlgorithm_h
 
-//namespace edm {
-//  class EventSetup;
-//}
 #include "DataFormats/SiStripCluster/interface/SiStripCluster.h"
 #include "DataFormats/SiStripDetSetCompressedCluster/interface/SiStripDetSetCompressedCluster.h"
 
@@ -20,11 +17,9 @@ typedef edm::DetSet<SiStripDigi> digis_t;
 typedef edmNew::DetSetVector<SiStripCluster> vclusters_t;
 typedef edmNew::DetSet<SiStripCluster> clusters_t;
 
-typedef edmNew::DetSetVector<SiStripDetSetCompressedCluster> v_comp_clusters_t;
+typedef edmNew::DetSetVector<SiStripDetSetCompressedCluster> vcomp_clusters_t;
 typedef edmNew::DetSet<SiStripDetSetCompressedCluster> comp_clusters_t;
 
-
-//class FedChannelConnection;
 
 class SiStripCompressionAlgorithm {
 public:
@@ -32,14 +27,12 @@ public:
   virtual ~SiStripCompressionAlgorithm() {}
   
     
-  void compress(const vclusters_t&, v_comp_clusters_t&);
-  
-
+  void compress(vclusters_t const&, vcomp_clusters_t&);
   
 
 private:
     void LoadRealModelDataFromFile();
-    void commpressDetModule(const clusters_t& , v_comp_clusters_t::TSFastFiller& );
+    void commpressDetModule(const clusters_t& , vcomp_clusters_t::TSFastFiller& );
     //void compressDataContent();
        
 

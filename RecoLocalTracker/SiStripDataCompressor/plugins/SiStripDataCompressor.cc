@@ -1,5 +1,4 @@
 #include "RecoLocalTracker/SiStripDataCompressor/plugins/SiStripDataCompressor.h"
-#include "FWCore/Framework/interface/Event.h"
 #include "FWCore/Utilities/interface/transform.h"
 #include "FWCore/MessageLogger/interface/MessageLogger.h"
 
@@ -12,20 +11,20 @@ SiStripDataCompressor::SiStripDataCompressor(const edm::ParameterSet& conf)
 }
 
 void SiStripDataCompressor::produce(edm::Event& event, const edm::EventSetup& es) {
-  auto outClusters = std::make_unique<vclusters_t>();
+  auto outClusters = std::make_unique<vcomp_clusters_t>();
 
   edm::Handle<vclusters_t> inClusters;
 
 
   for (auto const& token : inputTokens) {
     if (findInput(token, inClusters, event)){
-      //algorithm->compress(*digis, *outClusters);
+      //algorithm->compress(*inClusters, *outClusters);
     }else
       edm::LogError("Input Not Found") << "[SiStripDataCompressor::produce] ";  // << tag;
   }
 
   //LogDebug("Output") << outClusters->dataSize() << " clusters from " << outClusters->size() << " modules";
-  //outClusters->shrink_to_fit();
+  outClusters->shrink_to_fit();
   event.put(std::move(outClusters));
 }
 

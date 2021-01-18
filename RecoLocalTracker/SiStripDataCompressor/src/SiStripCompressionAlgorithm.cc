@@ -6,10 +6,10 @@ SiStripCompressionAlgorithm::SiStripCompressionAlgorithm(){
     this->LoadRealModelDataFromFile();
 }
 
-void SiStripCompressionAlgorithm::compress(const vclusters_t& ncColl, v_comp_clusters_t& compColl){
+void SiStripCompressionAlgorithm::compress(vclusters_t const & ncColl, vcomp_clusters_t& compColl){
     
     for (vclusters_t::const_iterator itInColl = ncColl.begin(); itInColl!= ncColl.end(); itInColl++) {
-      vclusters_t::TSFastFiller ff(compColl, itInColl->detId());
+      vcomp_clusters_t::TSFastFiller ff(compColl, itInColl->detId());
       commpressDetModule(*itInColl, ff);
       if (ff.empty())
         ff.abort(); 
@@ -17,31 +17,21 @@ void SiStripCompressionAlgorithm::compress(const vclusters_t& ncColl, v_comp_clu
     
 }
 
-void SiStripCompressionAlgorithm::commpressDetModule(const clusters_t& ncClusters, v_comp_clusters_t::TSFastFiller& compressedClusters) {
+void SiStripCompressionAlgorithm::commpressDetModule(const clusters_t& ncClusters, vcomp_clusters_t::TSFastFiller& compressedClusters) {
 
-  std::vector<const std::vector<uint8_t>> toBeCompressed;
+  std::vector<std::vector<uint8_t>> toBeCompressed;
   std::vector<std::uint8_t> compAmplitudes;
   SiStripDetSetCompressedCluster compCluster;
 
   for (clusters_t::const_iterator itNcClusters = ncClusters.begin(); itNcClusters!= ncClusters.end(); itNcClusters++){
-
-
-    const std::vector<uint8_t>& amplitudes = itNcClusters->amplitudes();
-    toBeCompressed.push_back(amplitudes);
-    
-        
-
-       
-
-    std::cout << "Amplitude zise: " << amplitudes.size() << " Compressed Amplitude Size: " << compAmplitudes.size() << " Lib size: " << evtSz << std::endl;
-    
+    compCluster.push_back_supportInfo(itNcClusters->firstStrip(), itNcClusters->isMerged(), itNcClusters->getSplitClusterError());
+    toBeCompressed.push_back(itNcClusters->amplitudes());        
   }
   
   std::size_t evtSz = anlz4cmssw_compress(toBeCompressed, compAmplitudes);  
+  std::cout << "To be compressed zise: " << toBeCompressed.size() << " Compressed Amplitude Size: " << compAmplitudes.size() << " Lib size: " << evtSz << std::endl;
   compCluster.loadCompressedAmplitudes(compAmplitudes);
   compressedClusters.push_back(compCluster);
-
-   
     
 }
      

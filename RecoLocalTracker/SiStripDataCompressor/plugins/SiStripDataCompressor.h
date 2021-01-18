@@ -11,13 +11,10 @@
 
 #include "DataFormats/Common/interface/DetSetVector.h"
 #include "DataFormats/Common/interface/DetSetVectorNew.h"
-#include "DataFormats/SiStripDigi/interface/SiStripDigi.h"
 #include "DataFormats/SiStripCluster/interface/SiStripCluster.h"
-
+#include "DataFormats/SiStripDetSetCompressedCluster/interface/SiStripDetSetCompressedCluster.h"
 
 #include "RecoLocalTracker/SiStripDataCompressor/interface/SiStripCompressionAlgorithm.h"
-
-#include <limits>
 
 #include <vector>
 #include <memory>

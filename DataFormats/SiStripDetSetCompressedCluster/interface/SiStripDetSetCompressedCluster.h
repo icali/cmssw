@@ -15,9 +15,9 @@ public:
    *  a DetID. The range is assumed to be non-empty.
    */
 
-  explicit SiStripDetSetCompressedCluster();
+  SiStripDetSetCompressedCluster();
 
-  explicit SiStripDetSetCompressedCluster(std::vector<std::pair<uint16_t, bool>>&, std::vector<float>&,std::vector<uint8_t>& );
+  SiStripDetSetCompressedCluster(std::vector<std::pair<uint16_t, bool>>&, std::vector<float>&,std::vector<uint8_t>& );
 
 
   void push_back_supportInfo(uint16_t firstStrip, bool merged=false, float errx=-99999.9);
