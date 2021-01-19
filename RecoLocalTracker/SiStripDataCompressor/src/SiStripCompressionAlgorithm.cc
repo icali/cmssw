@@ -25,7 +25,8 @@ void SiStripCompressionAlgorithm::commpressDetModule(const clusters_t& ncCluster
 
   for (clusters_t::const_iterator itNcClusters = ncClusters.begin(); itNcClusters!= ncClusters.end(); itNcClusters++){
     compCluster.push_back_supportInfo(itNcClusters->firstStrip(), itNcClusters->isMerged(), itNcClusters->getSplitClusterError());
-    toBeCompressed.push_back(itNcClusters->amplitudes());        
+    std::vector<uint8_t> clsuterToBeCompressed(itNcClusters->begin(), itNcClusters->end());
+    toBeCompressed.push_back(clsuterToBeCompressed);        
   }
   
   std::size_t evtSz = anlz4cmssw_compress(toBeCompressed, compAmplitudes);  

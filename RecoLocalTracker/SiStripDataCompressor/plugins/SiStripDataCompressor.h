@@ -27,13 +27,12 @@ public:
 
 private:
 
-  typedef edm::EDGetTokenT<vclusters_t> token_t;
-  typedef std::vector<token_t> token_v;
-  
-  template <class T> bool findInput(const edm::EDGetTokenT<T>&, edm::Handle<T>&, const edm::Event&);
-  const std::vector<edm::InputTag> inputTags;
   std::unique_ptr<SiStripCompressionAlgorithm> algorithm;
-  token_v inputTokens;
+    
+  edm::InputTag inputTagClusters;
+  edm::EDGetTokenT<vclusters_t> clusterToken;
+
+  
 };
 
 #endif

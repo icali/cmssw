@@ -3,33 +3,25 @@
 #include "FWCore/MessageLogger/interface/MessageLogger.h"
 
 
-SiStripDataCompressor::SiStripDataCompressor(const edm::ParameterSet& conf)
-    : inputTags(conf.getParameter<std::vector<edm::InputTag>>("DigiProducersList")) {
-  produces<edmNew::DetSetVector<SiStripDigi>>();
-  inputTokens = edm::vector_transform(
-      inputTags, [this](edm::InputTag const& tag) { return consumes<vclusters_t>(tag); });
+SiStripDataCompressor::SiStripDataCompressor(const edm::ParameterSet& conf){
+    inputTagClusters = conf.getParameter< edm::InputTag >("clustersToBeCompressed");
+    clusterToken = consumes< edmNew::DetSetVector< SiStripCluster > >(inputTagClusters);
+    
+    produces<vcomp_clusters_t>();
 }
 
 void SiStripDataCompressor::produce(edm::Event& event, const edm::EventSetup& es) {
   auto outClusters = std::make_unique<vcomp_clusters_t>();
 
   edm::Handle<vclusters_t> inClusters;
+  event.getByToken(clusterToken, inClusters);
 
-
-  for (auto const& token : inputTokens) {
-    if (findInput(token, inClusters, event)){
-      algorithm->compress(*inClusters, *outClusters);
-    }else
-      edm::LogError("Input Not Found") << "[SiStripDataCompressor::produce] ";  // << tag;
-  }
+    
+  algorithm->compress(*inClusters, *outClusters);
+    
+  
 
   //LogDebug("Output") << outClusters->dataSize() << " clusters from " << outClusters->size() << " modules";
-  outClusters->shrink_to_fit();
+  //outClusters->shrink_to_fit();
   event.put(std::move(outClusters));
-}
-
-template <class T>
-inline bool SiStripDataCompressor::findInput(const edm::EDGetTokenT<T>& tag, edm::Handle<T>& handle, const edm::Event& e) {
-  e.getByToken(tag, handle);
-  return handle.isValid();
 }

@@ -139,8 +139,8 @@ process.rawPath = cms.Path(process.rawStep*process.rawStepPix*process.rawStepHCA
 
 
 # Schedule definition
-#process.schedule = cms.Schedule(process.raw2digi_step,process.L1Reco_step,process.reconstruction_step,process.approxClustersv2,process.rawPath, process.endjob_step,process.AODoutput_step)
-process.schedule = cms.Schedule(process.raw2digi_step,process.compressor_step,process.rawPath, process.endjob_step,process.AODoutput_step)
+process.schedule = cms.Schedule(process.raw2digi_step,process.L1Reco_step,process.reconstruction_step, process.compressor_step,process.rawPath, process.endjob_step,process.AODoutput_step)
+#process.schedule = cms.Schedule(process.raw2digi_step,process.compressor_step,process.rawPath, process.endjob_step,process.AODoutput_step)
 
 from PhysicsTools.PatAlgos.tools.helpers import associatePatAlgosToolsTask
 associatePatAlgosToolsTask(process)
