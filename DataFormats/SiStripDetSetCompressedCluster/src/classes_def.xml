@@ -1,6 +1,10 @@
 <lcgdict>
 
  <class name="SiStripDetSetCompressedCluster"/>
+
+<!--<class name="SiStripDetSetCompressedCluster">
+   <field name="error_x" transient="true"/>
+ </class>-->
  <class name="std::vector<SiStripDetSetCompressedCluster>"/>
 
  <class name="edmNew::DetSetVector<SiStripDetSetCompressedCluster>"/>

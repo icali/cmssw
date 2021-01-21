@@ -32,9 +32,6 @@ public:
 
 private:
     void LoadRealModelDataFromFile();
-    void commpressDetModule(const clusters_t& , vcomp_clusters_t::TSFastFiller& );
-    //void compressDataContent();
-       
-
+    void commpressDetModule(const clusters_t& , vcomp_clusters_t::TSFastFiller& );       
 };
 #endif

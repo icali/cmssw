@@ -48,31 +48,38 @@ process.configurationMetadata = cms.untracked.PSet(
 
 # Output definition
 
-RecoHiTrackerRECO = cms.PSet(
-    outputCommands = cms.untracked.vstring(
-	'keep *_*siStrip*_*_*', 
-	'keep *_*SiStrip*_*_*',
-        'keep *_*rawData*_*_*',
-        'keep *_*RawData*_*_*',
-        'keep *_*rawStep*_*_*',
-        'keep *_*ApproximateRecHit*_*_*'
-    )
-)
-
-process.AODEventContent.outputCommands.extend(RecoHiTrackerRECO.outputCommands)
-
-process.AODoutput = cms.OutputModule("PoolOutputModule",
-    compressionAlgorithm = cms.untracked.string('ZLIB'),
-    compressionLevel = cms.untracked.int32(7),
+process.outputClusters = cms.OutputModule("PoolOutputModule",
+    compressionAlgorithm = cms.untracked.string('LZMA'),
+    compressionLevel = cms.untracked.int32(4),
     dataset = cms.untracked.PSet(
         dataTier = cms.untracked.string('AOD'),
         filterName = cms.untracked.string('')
     ),
     eventAutoFlushCompressedSize = cms.untracked.int32(31457280),
-    fileName = cms.untracked.string('file:step2.root'),
-    outputCommands = process.AODEventContent.outputCommands
+    fileName = cms.untracked.string('file:step2clusters.root'),
+    #outputCommands = process.ClustersEventContent.outputCommands
+    outputCommands = cms.untracked.vstring(
+    'drop *',   
+	'keep *_*siStripClusters*_*_*'   
+    )
 )
 
+process.outputCompressed = cms.OutputModule("PoolOutputModule",
+    compressionAlgorithm = cms.untracked.string('LZMA'),
+    compressionLevel = cms.untracked.int32(4),
+    dataset = cms.untracked.PSet(
+        dataTier = cms.untracked.string('AOD'),
+        filterName = cms.untracked.string('')
+    ),
+    eventAutoFlushCompressedSize = cms.untracked.int32(31457280),
+    fileName = cms.untracked.string('file:step2compressed.root'),
+    #outputCommands = process.CompressedEventContent.outputCommands
+    outputCommands = cms.untracked.vstring(
+    'drop *',   
+	'keep *_*SiStripDataCompressor*_*_*'      
+        
+    )
+)
 # Additional output definition
 
 # Other statements
@@ -90,11 +97,8 @@ process.compressor_step = cms.Path(process.SiStripDataCompressor)
 process.L1Reco_step = cms.Path(process.L1Reco)
 process.reconstruction_step = cms.Path(process.reconstruction)
 process.endjob_step = cms.EndPath(process.endOfProcess)
-process.AODoutput_step = cms.EndPath(process.AODoutput)
+process.output_step = cms.EndPath(process.outputClusters+process.outputCompressed)
 
-
-#process.load('RecoLocalTracker.SiStripClusterizer.SiStripClusters2ApproxClustersv2_cfi')
-#process.approxClustersv2 = cms.Path(process.SiStripClusters2ApproxClustersv2)
 
 
 process.load('EventFilter.SiStripRawToDigi.SiStripDigiToRaw_cfi')
@@ -130,16 +134,10 @@ process.ESRawDataCollector = process.rawDataCollector.clone(RawCollectionList = 
 
 process.rawPath = cms.Path(process.rawStep*process.rawStepPix*process.rawStepHCAL*process.rawStepES*process.StripRawDataCollector*process.PixelRawDataCollector*process.HCALRawDataCollector*process.ESRawDataCollector)
 
-#rechit converter
-#process.load('RecoLocalTracker.SiStripRecHitConverter.SiStripRecHitConverter_cfi')
-#process.ApproximateRecHits = process.approxSiStripMatchedRecHits.clone(
-#     ClusterProducer = 'SiStripClusters2ApproxClustersv2' 
-#)
-#process.ApproximateRecHitsPath = cms.Path(process.ApproximateRecHits)
 
 
 # Schedule definition
-process.schedule = cms.Schedule(process.raw2digi_step,process.L1Reco_step,process.reconstruction_step, process.compressor_step,process.rawPath, process.endjob_step,process.AODoutput_step)
+process.schedule = cms.Schedule(process.raw2digi_step,process.L1Reco_step,process.reconstruction_step, process.compressor_step,process.rawPath, process.endjob_step,process.output_step)
 #process.schedule = cms.Schedule(process.raw2digi_step,process.compressor_step,process.rawPath, process.endjob_step,process.AODoutput_step)
 
 from PhysicsTools.PatAlgos.tools.helpers import associatePatAlgosToolsTask
