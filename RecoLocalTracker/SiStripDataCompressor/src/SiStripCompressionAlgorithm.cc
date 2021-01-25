@@ -56,6 +56,7 @@ void SiStripCompressionAlgorithm::LoadRealModelDataFromFile(){
 
     char* globalPath=getenv("CMSSW_BASE");
     std::string fullName= std::string(globalPath) + std::string("src/RecoLocalTracker/SiStripDataCompressor/data/model.dat");
+    LogDebug("Output") << " Path: " << fullName;
     FILE *fTrained = std::fopen(&fullName[0], "rb");
         while (true) {
             std::size_t rdSz = std::fread(modelBuf, 1, sizeof modelBuf, fTrained);
