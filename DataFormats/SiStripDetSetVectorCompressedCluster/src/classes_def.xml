@@ -1,0 +1,26 @@
+<lcgdict>
+
+ <class name="SiStripDetSetVectorCompressedCluster"/>
+
+<!--<class name="SiStripDetSetVectorCompressedCluster">
+   <field name="error_x" transient="true"/>
+ </class>-->
+ <class name="std::vector<SiStripDetSetVectorCompressedCluster>"/>
+
+ <class name="edmNew::DetSetVector<SiStripDetSetVectorCompressedCluster>"/>
+
+ <class name="edm::Wrapper< edmNew::DetSetVector<SiStripDetSetVectorCompressedCluster> >"/>
+
+ <class name="edm::Ref<edmNew::DetSetVector<SiStripDetSetVectorCompressedCluster>, SiStripDetSetVectorCompressedCluster, edmNew::DetSetVector<SiStripDetSetVectorCompressedCluster>::FindForDetSetVector>"/>
+
+
+ <class name="edm::ContainerMask<edmNew::DetSetVector<SiStripDetSetVectorCompressedCluster> >"/>
+ <class name="edm::Wrapper<edm::ContainerMask<edmNew::DetSetVector<SiStripDetSetVectorCompressedCluster> > >"/>
+
+
+ <class name="std::vector<edm::Ref<edmNew::DetSetVector<SiStripDetSetVectorCompressedCluster>,SiStripDetSetVectorCompressedCluster,edmNew::DetSetVector<SiStripDetSetVectorCompressedCluster>::FindForDetSetVector> >" />
+ <class name="edmNew::DetSetVector<edm::Ref<edmNew::DetSetVector<SiStripDetSetVectorCompressedCluster>,SiStripDetSetVectorCompressedCluster,edmNew::DetSetVector<SiStripDetSetVectorCompressedCluster>::FindForDetSetVector> >" />
+ <class name="edm::Wrapper<edmNew::DetSetVector<edm::Ref<edmNew::DetSetVector<SiStripDetSetVectorCompressedCluster>,SiStripDetSetVectorCompressedCluster,edmNew::DetSetVector<SiStripDetSetVectorCompressedCluster>::FindForDetSetVector> > >" />
+
+
+</lcgdict>
