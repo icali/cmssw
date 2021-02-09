@@ -48,32 +48,25 @@ process.configurationMetadata = cms.untracked.PSet(
 
 # Output definition
 
-process.outputClusters = cms.OutputModule("PoolOutputModule",
-    compressionAlgorithm = cms.untracked.string('LZMA'),
-    compressionLevel = cms.untracked.int32(4),
-    dataset = cms.untracked.PSet(
-        dataTier = cms.untracked.string('AOD'),
-        filterName = cms.untracked.string('')
-    ),
+process.outputClusters = cms.OutputModule("EventStreamFileWriter",
+    fileName = cms.untracked.string('file:step2clusters.dat'),
+    compression_algorithm = cms.untracked.string('ZLIB'),
+    compression_level = cms.untracked.int32(7),
+    use_compression = cms.untracked.bool(True),
     eventAutoFlushCompressedSize = cms.untracked.int32(31457280),
-    fileName = cms.untracked.string('file:step2clusters.root'),
-    #outputCommands = process.ClustersEventContent.outputCommands
+    
     outputCommands = cms.untracked.vstring(
     'drop *',   
 	'keep *_*siStripClusters*_*_*'   
     )
 )
 
-process.outputCompressed = cms.OutputModule("PoolOutputModule",
-    compressionAlgorithm = cms.untracked.string('LZMA'),
-    compressionLevel = cms.untracked.int32(4),
-    dataset = cms.untracked.PSet(
-        dataTier = cms.untracked.string('AOD'),
-        filterName = cms.untracked.string('')
-    ),
-    eventAutoFlushCompressedSize = cms.untracked.int32(31457280),
-    fileName = cms.untracked.string('file:step2compressed.root'),
-    #outputCommands = process.CompressedEventContent.outputCommands
+process.outputCompressed = cms.OutputModule("EventStreamFileWriter",
+    fileName = cms.untracked.string('file:step2compressed.dat'),
+    compression_algorithm = cms.untracked.string('ZLIB'),
+    compression_level = cms.untracked.int32(7),
+    use_compression = cms.untracked.bool(True),
+    
     outputCommands = cms.untracked.vstring(
     'drop *',   
 	'keep *_*SiStripDataCompressor*_*_*'      
