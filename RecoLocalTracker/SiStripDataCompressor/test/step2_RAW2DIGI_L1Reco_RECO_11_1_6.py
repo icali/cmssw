@@ -22,11 +22,9 @@ process.load('Configuration.StandardSequences.Reconstruction_Data_cff')
 process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
-process.TFileService = cms.Service("TFileService",
-    fileName = cms.string("StripsRAW_v2.root"))
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(10)
+    input = cms.untracked.int32(1000)
 )
 
 # Input source
@@ -49,12 +47,8 @@ process.configurationMetadata = cms.untracked.PSet(
 # Output definition
 
 process.outputClusters = cms.OutputModule("PoolOutputModule",
-    compressionAlgorithm = cms.untracked.string('LZMA'),
-    compressionLevel = cms.untracked.int32(4),
-    dataset = cms.untracked.PSet(
-        dataTier = cms.untracked.string('AOD'),
-        filterName = cms.untracked.string('')
-    ),
+    compressionAlgorithm = cms.untracked.string('ZLIB'),
+    compressionLevel = cms.untracked.int32(7),
     eventAutoFlushCompressedSize = cms.untracked.int32(31457280),
     fileName = cms.untracked.string('file:step2clusters.root'),
     #outputCommands = process.ClustersEventContent.outputCommands
@@ -65,12 +59,8 @@ process.outputClusters = cms.OutputModule("PoolOutputModule",
 )
 
 process.outputCompressed = cms.OutputModule("PoolOutputModule",
-    compressionAlgorithm = cms.untracked.string('LZMA'),
-    compressionLevel = cms.untracked.int32(4),
-    dataset = cms.untracked.PSet(
-        dataTier = cms.untracked.string('AOD'),
-        filterName = cms.untracked.string('')
-    ),
+    compressionAlgorithm = cms.untracked.string('ZLIB'),
+    compressionLevel = cms.untracked.int32(7),
     eventAutoFlushCompressedSize = cms.untracked.int32(31457280),
     fileName = cms.untracked.string('file:step2compressed.root'),
     #outputCommands = process.CompressedEventContent.outputCommands
@@ -80,7 +70,6 @@ process.outputCompressed = cms.OutputModule("PoolOutputModule",
         
     )
 )
-# Additional output definition
 
 # Other statements
 from Configuration.AlCa.GlobalTag import GlobalTag
