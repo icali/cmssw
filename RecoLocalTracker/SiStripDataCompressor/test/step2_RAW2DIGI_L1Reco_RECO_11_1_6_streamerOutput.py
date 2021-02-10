@@ -22,9 +22,11 @@ process.load('Configuration.StandardSequences.Reconstruction_Data_cff')
 process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
+process.TFileService = cms.Service("TFileService",
+    fileName = cms.string("StripsRAW_v2.root"))
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(10)
+    input = cms.untracked.int32(1000)
 )
 
 # Input source
@@ -51,7 +53,6 @@ process.outputClusters = cms.OutputModule("EventStreamFileWriter",
     compression_algorithm = cms.untracked.string('ZLIB'),
     compression_level = cms.untracked.int32(7),
     use_compression = cms.untracked.bool(True),
-    eventAutoFlushCompressedSize = cms.untracked.int32(31457280),
     
     outputCommands = cms.untracked.vstring(
     'drop *',   
