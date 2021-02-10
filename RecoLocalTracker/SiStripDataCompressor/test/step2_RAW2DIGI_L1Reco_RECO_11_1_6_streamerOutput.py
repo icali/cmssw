@@ -49,7 +49,7 @@ process.configurationMetadata = cms.untracked.PSet(
 # Output definition
 
 process.outputClusters = cms.OutputModule("EventStreamFileWriter",
-    fileName = cms.untracked.string('file:step2clusters.dat'),
+    fileName = cms.untracked.string('step2clusters.dat'),
     compression_algorithm = cms.untracked.string('ZLIB'),
     compression_level = cms.untracked.int32(7),
     use_compression = cms.untracked.bool(True),
@@ -61,7 +61,7 @@ process.outputClusters = cms.OutputModule("EventStreamFileWriter",
 )
 
 process.outputCompressed = cms.OutputModule("EventStreamFileWriter",
-    fileName = cms.untracked.string('file:step2compressed.dat'),
+    fileName = cms.untracked.string('step2compressed.dat'),
     compression_algorithm = cms.untracked.string('ZLIB'),
     compression_level = cms.untracked.int32(7),
     use_compression = cms.untracked.bool(True),
