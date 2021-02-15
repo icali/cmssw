@@ -22,7 +22,6 @@ process.load('Configuration.StandardSequences.Reconstruction_Data_cff')
 process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
-
 process.maxEvents = cms.untracked.PSet(
     input = cms.untracked.int32(10)
 )
@@ -51,7 +50,6 @@ process.outputClusters = cms.OutputModule("PoolOutputModule",
     compressionLevel = cms.untracked.int32(7),
     eventAutoFlushCompressedSize = cms.untracked.int32(31457280),
     fileName = cms.untracked.string('file:step2clusters.root'),
-    #outputCommands = process.ClustersEventContent.outputCommands
     outputCommands = cms.untracked.vstring(
     'drop *',   
 	'keep *_*siStripClusters*_*_*'   
@@ -62,31 +60,31 @@ process.outputCompressed = cms.OutputModule("PoolOutputModule",
     compressionAlgorithm = cms.untracked.string('ZLIB'),
     compressionLevel = cms.untracked.int32(7),
     eventAutoFlushCompressedSize = cms.untracked.int32(31457280),
-    fileName = cms.untracked.string('file:step2compressed.root'),
-    #outputCommands = process.CompressedEventContent.outputCommands
+    fileName = cms.untracked.string('file:step2approximated.root'),
     outputCommands = cms.untracked.vstring(
     'drop *',   
-	'keep *_*SiStripDataCompressor*_*_*'      
-        
+	'keep *_*SiStripClusters2ApproxClustersv2*_*_*'          
     )
 )
+
+# Additional output definition
 
 # Other statements
 from Configuration.AlCa.GlobalTag import GlobalTag
 #process.GlobalTag = GlobalTag(process.GlobalTag, '103X_dataRun2_Prompt_v2', '')
 process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:run2_data', '')
 
-
-process.load('RecoLocalTracker.SiStripDataCompressor.SiStripDataCompressor_cfi')
+process.load('RecoLocalTracker.SiStripClusterizer.SiStripClusters2ApproxClustersv2_cfi')
 
 
 # Path and EndPath definitions
 process.raw2digi_step = cms.Path(process.RawToDigi)
-process.compressor_step = cms.Path(process.SiStripDataCompressor)
 process.L1Reco_step = cms.Path(process.L1Reco)
 process.reconstruction_step = cms.Path(process.reconstruction)
+process.approxClustersv2_step = cms.Path(process.SiStripClusters2ApproxClustersv2)
 process.endjob_step = cms.EndPath(process.endOfProcess)
 process.output_step = cms.EndPath(process.outputClusters+process.outputCompressed)
+
 
 
 
@@ -124,11 +122,8 @@ process.ESRawDataCollector = process.rawDataCollector.clone(RawCollectionList = 
 process.rawPath = cms.Path(process.rawStep*process.rawStepPix*process.rawStepHCAL*process.rawStepES*process.StripRawDataCollector*process.PixelRawDataCollector*process.HCALRawDataCollector*process.ESRawDataCollector)
 
 
-
 # Schedule definition
-process.schedule = cms.Schedule(process.raw2digi_step,process.L1Reco_step,process.reconstruction_step, process.compressor_step,process.rawPath, process.endjob_step,process.output_step)
-#process.schedule = cms.Schedule(process.raw2digi_step,process.compressor_step,process.rawPath, process.endjob_step,process.AODoutput_step)
-
+process.schedule = cms.Schedule(process.raw2digi_step,process.L1Reco_step,process.reconstruction_step,process.approxClustersv2_step,process.rawPath, process.endjob_step,process.output_step)
 from PhysicsTools.PatAlgos.tools.helpers import associatePatAlgosToolsTask
 associatePatAlgosToolsTask(process)
 
