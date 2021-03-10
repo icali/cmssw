@@ -1,5 +1,5 @@
-#ifndef RecoLocalTracker_ClusterRefinerTagMCmerged_h
-#define RecoLocalTracker_ClusterRefinerTagMCmerged_h
+#ifndef RecoLocalTracker_SiStripApproximatedClustersDump_h
+#define RecoLocalTracker_SiStripApproximatedClustersDump_h
 
 
 // user include files
@@ -51,7 +51,7 @@ private:
   void analyze(const edm::Event&, const edm::EventSetup&) override;
   void endJob() override;
 
-  edm::InputTag inputClusters;
+  edm::InputTag inputTagClusters;
   edm::EDGetTokenT< edmNew::DetSetVector<SiStripApproximateClusterv2> > clusterToken;  
 
   TNtuple* outNtuple;
